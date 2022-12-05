@@ -1,7 +1,7 @@
-from pydoc import apropos
+#from pydoc import apropos
 from flask import Flask, jsonify, request
 import joblib
-import sklearn
+
 
 app = Flask(__name__)
 
