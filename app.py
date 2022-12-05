@@ -63,6 +63,8 @@ def deleteProducts(product_name):
 @app.route('/predict', methods=['POST'])
 def addPredict():
     json = request.get_json(force=True)
+    edad = json['edad']
+    edad_gestacional = json['edad_gestacional']
     peso = json['peso']
     talla = json['talla']
     distrito = json['distrito']
@@ -70,18 +72,23 @@ def addPredict():
     hbc = json['hbc']
     imc = json['imc']
 
-    medidas = [peso,talla,distrito,hemoglobina,hbc,imc]
+    medidas = [[edad, edad_gestacional, peso,talla,distrito,hemoglobina,hbc,imc]]
+
+    print(medidas)
 
     clf =   joblib.load('modelo.pkl')
 
     pred = clf.predict(medidas)
+    pred = int (pred)
 
     msg = ""
 
+    
     if pred == 0:
         msg = "No tiene anemia"
     if pred == 1:
         msg = "Tiene anemia"
+    
    
     body=pred
 
