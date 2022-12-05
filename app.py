@@ -1,11 +1,15 @@
 from pydoc import apropos
 from flask import Flask, jsonify, request
 import joblib
-import sklearn
+
 
 app = Flask(__name__)
 
 from products import products
+
+@app.route('', methods=['GET'])
+def ping():
+    return jsonify({"gura": "gura"})
 
 @app.route('/ping', methods=['GET'])
 def ping():
@@ -59,7 +63,7 @@ def deleteProducts(product_name):
             "products": products
         })
 
-
+'''
 @app.route('/predict', methods=['POST'])
 def addPredict():
     json = request.get_json(force=True)
@@ -95,7 +99,7 @@ def addPredict():
     
     
     return jsonify({"message": msg , "body": body})
-
+'''
 if __name__ == '__main__':
     app.run(debug=True, port=4000)
     
