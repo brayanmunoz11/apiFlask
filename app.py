@@ -4,7 +4,6 @@ import joblib
 
 app = Flask(__name__)
 
-from products import products
 
 @app.route('/', methods=['GET'])
 def getHome():
