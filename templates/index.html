@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesis</title>
+    <link rel="stylesheet" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"></head>
+<body class="m-5">
+
+    <main>
+        <div class="px-4 py-2 my-2 text-center border-bottom">
+          <h1 class="display-5 fw-bold">Sistema Inteligente Para Detectar Anemia en Muejeres Embarazadas</h1>
+        </div>
+  
+        <div class="text-center">
+          <h1 class="display-10 w-bold">Autor:</h1>
+          <h5 class="display-10 ">-Muñoz Silva Brayan</h5>
+          <hr>
+        </div>
+
+        <div class="text-center">
+            <label class="form-label" for="EndpointInput">Endpoint</label>
+            <select  type="text" class="form-control" name="Endpoint" id="EndpointInput" required>
+                <option value="http://localhost:4000/predict">Prediction Local V1</option>
+                <option value="http://localhost:4000//predictv2">Prediction Local V2</option>
+                <option value="http://ec2-54-89-245-39.compute-1.amazonaws.com:4000/predict">Prediction V1</option>
+                <option value="http://ec2-54-89-245-39.compute-1.amazonaws.com:4000/predictv2">Prediction V2</option>
+            </select>
+            
+            <hr>
+        </div>
+    </main>
+
+    <div class="container"></div>
+        <form class="row g-3 mt-3">
+            
+            <div class="col-6">
+                <label class="form-label" for="edadInpunt">Edad (Años)</label>
+                <input type="number" class="form-control" id="edadInpunt" placeholder="Ingresa la edad" aria-describedby="edadInpunt" required>
+
+            </div>
+            
+            <div class="col-6">
+                <label class="form-label" for="gesInput">Edad Gestacional (Semanas)</label>
+                <input type="number" class="form-control" id="gesInput" placeholder="Ingresa la edad gestacional" aria-describedby="gesInpunt" required>
+            </div>
+            
+            <div class="col-6">
+                <label class="form-label" for="pesoInput">Peso (Kg)</label>
+                <input type="number" class="form-control" id="pesoInput" placeholder="Ingresa el peso" aria-describedby="pesoInpunt" required>
+            </div>
+           
+            <div class="col-6">
+                <label class="form-label" for="tallaInput">Talla (cm)</label>
+                <input type="number" class="form-control" id="tallaInput" placeholder="Ingresa la talla" aria-describedby="tallaInpunt" required>
+            </div>
+            
+            <div class="col-6">
+                <label class="form-label" for="distritoInput">Distrito</label>
+                <select  type="text" class="form-control" name="distritoInput" id="distritoInput" required>
+                    <option value="0">CUTERVO</option>
+                    <option value="1">QUEROCOTILLO</option>
+                    <option value="2">SANTO TOMAS</option>
+                    <option value="3">PIMPINGOS</option>
+                    <option value="4">SOCOTA</option>
+                    <option value="5">SANTO DOMINGO DE LA CAPILLA</option>
+                    <option value="6">CALLAYUC</option>
+                    <option value="7">SANTA CRUZ</option>
+                    <option value="8">LA RAMADA</option>
+                    <option value="9">CUJILLO</option>
+                    <option value="10">SAN ANDRES DE CUTERVO</option>
+                    <option value="11">CHOROS</option>
+                    <option value="12">SAN LUIS DE LUCMA</option>
+                    <option value="13">TORIBIO CASANOVA</option>
+                </select>
+            </div>
+            
+            <div class="col-6">
+                <label class="form-label" for="hemoglobinaInput">Hemoglobina</label>
+                <input type="number" class="form-control" id="hemoglobinaInput" placeholder="Ingresa la hemoglobina" aria-describedby="hemoglobinaInpunt" required>
+            </div>
+            
+            <div class="col-6">
+                <label class="form-label" for="hbcInput">Hbc</label>
+                <input type="number" class="form-control" id="hbcInput" placeholder="Ingresa el HBC" aria-describedby="hbcInpunt" required>
+            </div>
+            
+            <div class="col-6">
+                <label class="form-label" for="imcInput">IMC</label>
+                <input name="imcInput" type="text" class="form-control" id="imcInput" value="" aria-describedby="imcInpunt" required>
+            </div>
+
+            <div class="button">
+                <button type="button" class="btn btn-primary" onclick="calcularIMC()">
+                    Calcular IMC
+                </button>
+            </div>
+
+            <div class="col-12">
+                <button type="button" class="btn btn-primary" onclick="predecir()">
+                    Predecir
+                </button>
+            </div>
+            
+            <div class="col-6">
+                <label class="form-label" for="prediccionInput">PREDICCION</label>
+                <input name="prediccionInput" type="text" class="form-control" id="prediccionInput" value="" aria-describedby="prediccionInput" >
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-danger" onclick="window.location.href = window.location.href">
+                    RESTET
+                </button>
+            </div>
+
+
+
+        </form>
+
+        <script type="text/javascript">
+            
+            function calcularIMC() {
+                const peso = Number(document.getElementById("pesoInput").value);
+                const talla = Number(document.getElementById("tallaInput").value);
+                const talla1 = talla/100;
+                const imc = peso/(talla1*talla1);
+                document.getElementById("imcInput").value = imc;
+                console.log(imc);
+
+                const valorimc = Number(document.getElementById("imcInput").value);
+                console.log(valorimc);
+            }
+        </script>
+
+        <script type="text/javascript">
+
+            function  predecir() {
+                const edad = Number(document.getElementById("edadInpunt").value);
+                const edad_gestacional = Number(document.getElementById("gesInput").value);
+                const peso = Number(document.getElementById("pesoInput").value);
+                const talla = Number(document.getElementById("tallaInput").value);
+                const distrito = Number(document.getElementById("distritoInput").value);
+                const hemoglobina = Number(document.getElementById("hemoglobinaInput").value);
+                const hbc = Number(document.getElementById("hbcInput").value);
+                const imc = Number(document.getElementById("imcInput").value);
+
+
+
+                let _datos = {
+                    "edad": edad,
+                    "edad_gestacional": edad_gestacional,
+                    "peso" : peso,
+                    "talla" : talla,
+                    "distrito" : distrito,
+                    "hemoglobina" : hemoglobina,
+                    "hbc" : hbc,
+                    "imc" : imc
+                }
+                console.log(JSON.stringify(_datos))
+
+
+                let url = document.getElementById("EndpointInput").value;
+                console.log(url)
+                    fetch(url,{
+                        mode: "cors",
+                        method: "POST",
+                        body: JSON.stringify(_datos),
+                        headers: {"Content-type": "application/json; charset=UTF-8"}
+                    })
+                    .then(response =>response.json()) 
+                    .then(data => mostrarData(data))
+                    .catch(err => console.log(err));
+                
+                
+                mostrarData = (data) =>{
+                    console.log(data.message)
+                    document.getElementById("prediccionInput").value = data.message;
+
+                }
+
+
+            }
+          </script>
+
+</body>
+</html>

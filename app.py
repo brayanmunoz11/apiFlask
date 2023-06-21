@@ -1,13 +1,15 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import joblib
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/', methods=['GET'])
-def getHome():
-    return jsonify({"gura": "gura"})
+def index():
+    return render_template('index.html')
 
 @app.route('/ping', methods=['GET'])
 def ping():
@@ -64,7 +66,7 @@ def addPredictv2():
 
     pred = clf1.predict(medidas)
     print(pred)
-    return jsonify({"message": str(pred), "Status": 200})
+    return jsonify({"message": str(pred[0]), "Status": 200})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug=True, port=4000)
