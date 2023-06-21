@@ -44,6 +44,28 @@ def addPredict():
     body=pred
     return jsonify({"message": msg , "body": body})
 
+@app.route('/predictv2', methods=['POST'])
+def addPredictv2():
+    json = request.get_json(force=True)
+    edad = json['edad']
+    edad_gestacional = json['edad_gestacional']
+    peso = json['peso']
+    talla = json['talla']
+    distrito = json['distrito']
+    hemoglobina = json['hemoglobina']
+    hbc = json['hbc']
+    imc = json['imc']
+
+    medidas = [[edad, edad_gestacional, peso,talla,distrito,hemoglobina,hbc,imc]]
+
+    print(medidas)
+
+    clf1 =   joblib.load('modeloNBayes98perc.pkl')
+
+    pred = clf1.predict(medidas)
+    print(pred)
+    return jsonify({"message": str(pred), "Status": 200})
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug=True, port=4000)
     
