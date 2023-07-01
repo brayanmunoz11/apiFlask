@@ -11,7 +11,7 @@
 
     <main>
         <div class="px-4 py-2 my-2 text-center border-bottom">
-          <h1 class="display-5 fw-bold">Sistema Inteligente Para Detectar Anemia en Muejeres Embarazadas</h1>
+          <h1 class="display-5 fw-bold">Sistema Inteligente Para Detectar Anemia en Muejeres Gestantes en la Provincia de Cutervo</h1>
         </div>
   
         <div class="text-center">
@@ -23,10 +23,10 @@
         <div class="text-center">
             <label class="form-label" for="EndpointInput">Endpoint</label>
             <select  type="text" class="form-control" name="Endpoint" id="EndpointInput" required>
+                <option value="http://ec2-54-89-245-39.compute-1.amazonaws.com:4000/predict">Prediction Nube V1</option>
+                <option value="http://ec2-54-89-245-39.compute-1.amazonaws.com:4000/predictv2">Prediction Nube V2</option>
                 <option value="http://localhost:4000/predict">Prediction Local V1</option>
                 <option value="http://localhost:4000//predictv2">Prediction Local V2</option>
-                <option value="http://ec2-54-89-245-39.compute-1.amazonaws.com:4000/predict">Prediction V1</option>
-                <option value="http://ec2-54-89-245-39.compute-1.amazonaws.com:4000/predictv2">Prediction V2</option>
             </select>
             
             <hr>
